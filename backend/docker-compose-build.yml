@@ -1,6 +1,6 @@
 services:
   bdd-build:
-    container_name: bdd-build
+    container_name: bdd_build
     image: mariadb:latest
     volumes:
       - ./mysql:/var/lib/mysql
@@ -16,13 +16,12 @@ services:
       retries: 3
 
   backend-build:
-    container_name: backend-build
+    container_name: backend_build
     build: .
     depends_on:
-      bdd_build:
+      bdd-build:
         condition: service_healthy
     environment:
-      - BDD_HOST: bdd_build
+      BDD_HOST: bdd-build
     ports:
       - 23000:23000
-      

@@ -22,6 +22,6 @@ db.Cocktail.belongsTo(db.User, {foreignKey: 'user_id'})
 
 
 /*** SYNCHRO */
-//db.sequelize.sync({alter: true})
+// db.sequelize.sync({alter: true})
 
 module.exports = db

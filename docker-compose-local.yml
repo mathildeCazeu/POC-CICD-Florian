@@ -1,0 +1,18 @@
+services:
+  total_bdd:
+    container_name: total_mariadb
+    image: mariadb:latest
+    volumes:
+      - ./mysql:/var/lib/mysql:rw
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: TOOR
+      MARIADB_DATABASE: bddname
+      MARIADB_USER: roger
+      MARIADB_PASSWORD: regor
+  total_adminer:
+    container_name: total_adminer
+    image: adminer
+    ports:
+      - "8080:8080"

@@ -8,8 +8,8 @@
     "populate": "node -r dotenv/config ./api/config/first_start",
     "dev": "nodemon -r dotenv/config server.js",
     "start": "node -r dotenv/config server.js",
-    "test": "jest --setupFiles dotenv/config --runInBand --testPathIgnorePatterns=init_bdd.test.js",
-    "test:file": "func() { jest ${1}.test.js --setupFiles dotenv/config; }; func",
+    "test": "jest --setupFiles dotenv/config --runInBand --testPathIgnorePatterns=init_bdd.test.js", 
+    "test:file": "node test-file.js",
     "test:cov": "jest --setupFiles dotenv/config --runInBand --coverage --testPathIgnorePatterns=init_bdd.test.js"
   },
   "keywords": [],
@@ -29,3 +29,4 @@
     "supertest": "^7.0.0"
   }
 }
+

@@ -1,0 +1,4 @@
+NOTES DU COURS
+ "test": "jest --setupFiles dotenv/config --runInBand --testPathIgnorePatterns=init_bdd.test.js",  -> route qui lance tous les tests, pas tous en même temps
+    "test:file": "func() { jest ${1}.test.js --setupFiles dotenv/config; }; func", -> fonction qui permet de tester un fichier à la fois | nom run test:file main.router
+    "test:cov": "jest --setupFiles dotenv/config --runInBand --coverage --testPathIgnorePatterns=init_bdd.test.js" -> fonction qui génère le taux de couverture

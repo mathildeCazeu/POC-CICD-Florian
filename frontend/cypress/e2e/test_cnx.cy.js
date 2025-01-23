@@ -18,6 +18,4 @@ describe("TEST LOGIN FORM", () => {
         cy.get('[data-cy="home-page"]').should('be.visible')
 
     })
-
-
 })

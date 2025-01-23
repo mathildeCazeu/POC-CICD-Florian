@@ -150,3 +150,21 @@ jobs:
           projectBaseDir: ./backend
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  QualityFront:
+    needs: [Backend, Frontend]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: SonarCloud
+        uses: sonarsource/sonarcloud-github-action@v3.1.0
+        with:
+          projectBaseDir: ./frontend
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}

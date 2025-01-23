@@ -20,8 +20,9 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ github.GHCR_PAT }}
-
+          password: ${{ secrets.NO_NAME }} 
+          # NO_NAME devrait s'appeler GHCR_PAT
+ 
       - name: Check data
         run: |
           echo ${{ env.REGISTRY }}

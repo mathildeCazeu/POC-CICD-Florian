@@ -132,7 +132,26 @@ jobs:
       - name: Clean Builder Backend Docker
         working-directory: backend
         run: docker compose -f docker-compose-build.yml down
-      
+
+  # Quality:
+  #   runs-on: ubuntu:latest
+  #   strategy:
+  #     matrix:
+  #       directory: [frontend, backend]
+  #       token: [${{ secrets.SONAR_TOKEN_FRONT }}, ${{ secrets.SONAR_TOKEN }}]
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #       with:
+  #         working-directory: ${{ matrix.directory }}
+  #     - name: SonarCloud
+  #       uses: sonarsource/sonarcloud-github-action@v3.1.0
+  #       with:
+  #         projectBaseDir: ./backend
+  #       env:
+  #         SONAR_TOKEN: ${{ matrix.token }}
+
   QualityBack:
     needs: [Backend, Frontend]
     runs-on: ubuntu-latest
@@ -143,13 +162,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
-      - name: SonarCloud
-        uses: sonarsource/sonarcloud-github-action@v3.1.0
-        with:
-          projectBaseDir: ./backend
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   QualityFront:
     needs: [Backend, Frontend]
@@ -168,3 +180,11 @@ jobs:
           projectBaseDir: ./frontend
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
+
+  DockerBuild:
+    if: ${{ github.event_name == 'push' }}
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/docker_ghcr.yml
+    secrets: inherit

@@ -182,7 +182,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
 
   DockerBuild:
-    if: ${{ github.event_name == 'push' }}
     permissions:
       contents: read
       packages: write

@@ -1,0 +1,21 @@
+name: Canary Deployment
+
+on:
+  workflow_call
+  
+jobs:
+  create_resource_group:
+    runs-on: ubuntu-latest
+    env:
+      ResourceGroupName: "maalsi23-mono"
+      ResourceGroupLocation: "francecentral"
+
+    steps:
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+      - name: Azure CLI to Create Resources Group
+        uses: azure/CLI@v2
+        with:
+          inlineScript:
